@@ -1,9 +1,11 @@
 **JWTAdminTest**
 
-task details >>customize filter to verify JWT sent to admin after login so he can access all resources 
+- task details >>customize filter to verify JWT sent to admin after login so he can access all resources 
 
 **hints**
 
--when login u will only recieve a JWT in the response then u can intercept with each request header .
+- u will use the same collection attached with the task and the same api to login >> localhost:8080/api/admin
 
--the key of the header will be " Auth" and the value of JWT will starts with "Bearer " .
+- after login u will only recieve a JWT in the response then u can intercept with each request header .
+
+- the key of the header will be " Auth" and the value of JWT will starts with "Bearer " .
