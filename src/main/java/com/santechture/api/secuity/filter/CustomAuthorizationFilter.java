@@ -37,14 +37,11 @@ public class CustomAuthorizationFilter extends OncePerRequestFilter {
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
         log.info("enter AuthorizationFilter >>");
         if(request.getServletPath().equals("/admin")){
-            String appName=request.getHeader("AppName");
-            log.info(appName);
-            log.info("coming from login page");
+            log.info("coming from admin login page");
             filterChain.doFilter(request,response);
         }else {
-            log.info("filter header for token");
+            log.info("filter header token");
             String authorizationToken=request.getHeader("Auth");
-            log.info("token is "+authorizationToken );
             if(Objects.nonNull(authorizationToken)&&authorizationToken.startsWith("Bearer ")&& !tokenSet.contains(authorizationToken)){
                 try {
                     String token = authorizationToken.substring("Bearer ".length());
@@ -64,7 +61,7 @@ public class CustomAuthorizationFilter extends OncePerRequestFilter {
                     new ObjectMapper().writeValue(response.getOutputStream(),error);
                 }
             }else {
-                log.info("token not starts with bearer"+authorizationToken.length());
+                log.info("invalid token "+ authorizationToken);
                 Map<String,String> error=new HashMap<>();
                 error.put("error","Invalid Token");
                 response.setContentType(MediaType.APPLICATION_JSON_VALUE);
