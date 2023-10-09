@@ -9,3 +9,6 @@
 - after login u will only recieve a JWT in the response then u can intercept with each request header .
 
 - the key of the header will be " Auth" and the value of JWT will starts with "Bearer " .
+
+- as required , after adding a new user the admin will be logged out and he should log in again to access any resources
+- 
